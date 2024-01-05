@@ -23,6 +23,26 @@
     </changeSet>
 
 
+    <changeSet author="julioluis" id="jl-2024-01-05-02">
+        <sql>
+            ALTER TABLE cnd_donate
+            ADD COLUMN created_at DATETIME  default current_timestamp
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet author="julioluis" id="jl-2024-01-05-03">
+        <sql>
+            ALTER TABLE cnd_donate
+                ADD INDEX (created_at)
+
+        </sql>
+
+    </changeSet>
+
+
+
 
 
 
