@@ -15,7 +15,7 @@ public class Donate {
     @GenericGenerator(name = "native",strategy = "native")
     private Long id;
 
-    private String commet;
+    private String comment;
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)
     private LocalDate createdAt;
