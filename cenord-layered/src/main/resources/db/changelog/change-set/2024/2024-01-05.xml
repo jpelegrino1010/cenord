@@ -9,12 +9,13 @@
 
 
 
-    <changeSet author="julioluis" id="jl-2021-09-23-01">
+    <changeSet author="julioluis" id="jl-2024-01-05-01">
         <sql>
 
-            CREATE TABLE status (
+            CREATE TABLE cnd_donate (
                                   id BIGINT(11) NOT NULL AUTO_INCREMENT,
-                                  description VARCHAR(20) NOT NULL,
+                                  amount BIGINT(20) NOT NULL,
+                                  comment VARCHAR(200),
                                   PRIMARY KEY (id));
 
         </sql>
@@ -22,69 +23,6 @@
     </changeSet>
 
 
-    <changeSet author="julioluis" id="jl-2021-09-23-02">
-        <sql>
-
-            CREATE TABLE rol (
-                                    id BIGINT(11) NOT NULL AUTO_INCREMENT,
-                                    description VARCHAR(20) NOT NULL,
-                                    PRIMARY KEY (id));
-
-        </sql>
-
-    </changeSet>
-
-
-    <changeSet author="julioluis" id="jl-2021-09-23-03">
-        <sql>
-
-            CREATE TABLE authorities (
-                                    id BIGINT(11) NOT NULL AUTO_INCREMENT,
-                                    description VARCHAR(20) NOT NULL,
-                                    PRIMARY KEY (id));
-
-        </sql>
-
-    </changeSet>
-
-    <changeSet author="julioluis" id="jl-2021-09-23-04">
-        <sql>
-
-            CREATE TABLE rol_auth (
-                                         rol_id BIGINT(11) NOT NULL,
-                                         authority_id BIGINT(11) NOT NULL
-                                        );
-
-
-        </sql>
-
-    </changeSet>
-
-    <changeSet author="julioluis" id="jl-2021-09-23-05">
-        <sql>
-
-            CREATE TABLE user
-            (
-                id         BIGINT(11) NOT NULL AUTO_INCREMENT,
-                first_name VARCHAR(20) NOT NULL,
-                last_name  VARCHAR(20) NOT NULL,
-                email      VARCHAR(30),
-                username   VARCHAR(20) NOT NULL,
-                password   VARCHAR(20) NOT NULL,
-                create_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP,
-                create_by  VARCHAR(20) NOT NULL,
-                updated_by VARCHAR(20),
-                status_id  BIGINT(11) NOT NULL,
-                rol_id     BIGINT(11) NOT NULL,
-                PRIMARY KEY (id),
-                FOREIGN KEY (status_id) REFERENCES status (id),
-                FOREIGN KEY (rol_id) REFERENCES rol (id)
-            );
-
-        </sql>
-
-    </changeSet>
 
 
 
