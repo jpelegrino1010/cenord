@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -19,6 +20,7 @@ public class Donate {
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)
     private LocalDate createdAt;
+    private BigDecimal amount;
 
 
 }
