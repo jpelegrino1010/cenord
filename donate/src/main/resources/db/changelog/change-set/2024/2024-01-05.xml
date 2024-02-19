@@ -1,0 +1,50 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+
+    <changeSet author="julioluis" id="jl-2024-01-05-01">
+        <sql>
+
+            CREATE TABLE cnd_donate (
+                                  id BIGINT(11) NOT NULL AUTO_INCREMENT,
+                                  amount BIGINT(20) NOT NULL,
+                                  comment VARCHAR(200),
+                                  PRIMARY KEY (id));
+
+        </sql>
+
+    </changeSet>
+
+
+    <changeSet author="julioluis" id="jl-2024-01-05-02">
+        <sql>
+            ALTER TABLE cnd_donate
+            ADD COLUMN created_at DATETIME  default current_timestamp
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet author="julioluis" id="jl-2024-01-05-03">
+        <sql>
+            ALTER TABLE cnd_donate
+                ADD INDEX (created_at)
+
+        </sql>
+
+    </changeSet>
+
+
+
+
+
+
+
+</databaseChangeLog>

@@ -1,0 +1,80 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+
+    <changeSet author="julioluis" id="jl-2024-02-19-01">
+        <sql>
+
+            CREATE TABLE rol (
+                                 id BIGINT(11) NOT NULL AUTO_INCREMENT,
+                                 rol_name VARCHAR(50),
+                                 created_at TIMESTAMP NOT NULL,
+                                 created_by varchar(50) NOT NULL,
+                                 updated_at TIMESTAMP DEFAULT NULL,
+                                 updated_by varchar(50) DEFAULT NULL,
+                                 PRIMARY KEY (id));
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet author="julioluis" id="jl-2024-02-19-02">
+        <sql>
+
+            CREATE TABLE authority (
+                                       id BIGINT(11) NOT NULL AUTO_INCREMENT,
+                                       authority_name VARCHAR(50),
+                                       created_at TIMESTAMP NOT NULL,
+                                       created_by varchar(50) NOT NULL,
+                                       updated_at TIMESTAMP DEFAULT NULL,
+                                       updated_by varchar(50) DEFAULT NULL,
+                                       PRIMARY KEY (id));
+
+        </sql>
+
+    </changeSet>
+
+
+    <changeSet author="julioluis" id="jl-2024-02-19-03">
+        <sql>
+
+            CREATE TABLE rol_auth (
+                                      rol_id BIGINT(11),
+                                      authority_id BIGINT(11)
+            );
+
+        </sql>
+
+    </changeSet>
+
+    <changeSet author="julioluis" id="jl-2024-02-19-04">
+        <sql>
+
+            CREATE TABLE member (
+                                    id BIGINT(11) NOT NULL AUTO_INCREMENT,
+                                    email_address VARCHAR(40),
+                                    password VARCHAR(40),
+                                    enabled boolean not null,
+                                    rol_id BIGINT(11),
+                                    created_at TIMESTAMP NOT NULL,
+                                    created_by varchar(50) NOT NULL,
+                                    updated_at TIMESTAMP DEFAULT NULL,
+                                    updated_by varchar(50) DEFAULT NULL,
+                                    PRIMARY KEY (id),
+                                    FOREIGN KEY (rol_id) REFERENCES rol (id)
+            );
+
+        </sql>
+
+    </changeSet>
+
+
+
+</databaseChangeLog>
