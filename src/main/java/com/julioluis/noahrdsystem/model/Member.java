@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "member")
 public class Member {
 
     @Id
@@ -29,4 +30,7 @@ public class Member {
     private LocalDateTime createdAt;
     @Column(name = "created_by")
     private String createdBy;
+    @JoinColumn(name = "rol_id")
+    @ManyToOne
+    private Rol rol;
 }

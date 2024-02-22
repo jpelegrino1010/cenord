@@ -7,8 +7,18 @@
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <include file="2024/2024-02-19.xml" relativeToChangelogFile="true"></include>
-    <include file="2024/2024-02-20.xml" relativeToChangelogFile="true"></include>
+
+
+
+    <changeSet author="julioluis" id="jl-2024-02-20-01">
+        <sql>
+
+            ALTER TABLE member MODIFY password VARCHAR(100);
+
+        </sql>
+
+    </changeSet>
+
 
 
 </databaseChangeLog>
