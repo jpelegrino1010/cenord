@@ -7,18 +7,11 @@ pipeline {
                 }
         }
 
-     stages {
-            stage("build code") {
+        stage("Test code") {
                     steps {
-                        bat "mvn clean install"
+                        bat "mvn test"
                     }
             }
-
-          stage("Test code") {
-                      steps {
-                          bat "mvn test"
-                      }
-              }
         stage("Start container") {
             steps {
                bat "docker-compose up -d --no-color --wait"
