@@ -4,6 +4,7 @@ import com.julioluis.noahrdsystem.model.Authority;
 import com.julioluis.noahrdsystem.model.Member;
 import com.julioluis.noahrdsystem.model.Rol;
 import com.julioluis.noahrdsystem.repositories.MemberRepository;
+import com.julioluis.noahrdsystem.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -25,14 +26,14 @@ public class CustomAuthProvider implements AuthenticationProvider {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private MemberRepository memberRepository;
+    private MemberService memberService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username=authentication.getName();
         String pass=authentication.getCredentials().toString();
 
-        Member member = memberRepository.findByEmail(username);
+        Member member = memberService.findMemberByEmail(username).getData();
         if(Objects.nonNull(member)) {
             if(passwordEncoder.matches(pass,member.getPassword())) {
                 return new UsernamePasswordAuthenticationToken(username,pass,getGrantedAuthority(member.getRol()));
