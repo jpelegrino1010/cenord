@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "member")
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
@@ -25,11 +25,6 @@ public class Member {
     private String email;
     private String password;
     private boolean enabled;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-    @Column(name = "created_by")
-    private String createdBy;
     @JoinColumn(name = "rol_id")
     @ManyToOne
     private Rol rol;
