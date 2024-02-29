@@ -3,6 +3,7 @@ package com.julioluis.noahrdsystem.controllers;
 import com.julioluis.noahrdsystem.dtos.ResponseDTO;
 import com.julioluis.noahrdsystem.model.Member;
 import com.julioluis.noahrdsystem.services.MemberService;
+import com.julioluis.noahrdsystem.utils.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class MemberController {
             return ResponseEntity.ok().body(response);
         }
 
-        throw new RuntimeException(response.getMessage());
+        throw new UserException(response.getMessage());
     }
 
     @PostMapping
@@ -36,7 +37,7 @@ public class MemberController {
             return ResponseEntity.status(201).body(response);
         }
 
-        throw new RuntimeException("Error creating member");
+        throw new UserException(response.getMessage());
     }
 
 }

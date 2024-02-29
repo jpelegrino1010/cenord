@@ -21,7 +21,7 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     private Long id;
-    @Column(name = "email_address")
+    @Column(name = "email_address", unique = true)
     private String email;
     private String password;
     private boolean enabled;
