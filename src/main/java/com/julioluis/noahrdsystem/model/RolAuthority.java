@@ -1,33 +1,24 @@
 package com.julioluis.noahrdsystem.model;
 
-
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-
-import java.time.LocalDateTime;
-@JsonFilter("memberFilter")
-@Entity
+@Entity(name = "rol_auth")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "member")
-public class Member extends BaseEntity {
-
+@NoArgsConstructor
+public class RolAuthority {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO,generator="native")
     @GenericGenerator(name = "native",strategy = "native")
     private Long id;
-    @Column(name = "email_address")
-    private String email;
-    private String password;
-    private Boolean enabled;
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "rol_id")
-    @ManyToOne
     private Rol rol;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
 }

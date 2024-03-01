@@ -4,18 +4,18 @@ import com.julioluis.noahrdsystem.dtos.ResponseDTO;
 import com.julioluis.noahrdsystem.model.Authority;
 import com.julioluis.noahrdsystem.model.Member;
 import com.julioluis.noahrdsystem.model.Rol;
+import com.julioluis.noahrdsystem.model.RolAuthority;
 import com.julioluis.noahrdsystem.repositories.MemberRepository;
+import com.julioluis.noahrdsystem.repositories.RolAuthorityRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
@@ -23,12 +23,20 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class MemberServiceTest {
 
+    public static final long ID = 1L;
     @Mock
     private MemberRepository memberRepository;
+    @Mock
+    private PasswordEncoder passwordEncoder;
+    @Mock
+    private RolAuthorityRepository rolAuthorityRepository;
     @InjectMocks
     private MemberService service;
     private Member member;
     private List<Member> members;
+
+
+
 
     @Before
     public void setUp() {
@@ -84,6 +92,53 @@ public class MemberServiceTest {
         assertTrue(response.isSuccess());
         verify(memberRepository,times(1)).findAll();
     }
+
+    @Test
+    public void test_find_by_id() {
+        when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+        ResponseDTO<Member> response = service.findById(1L);
+
+        assertTrue(response.isSuccess());
+        verify(memberRepository,times(1)).findById(anyLong());
+
+    }
+
+    @Test
+    public void test_update_member() {
+
+        Member modifyMember = new Member();
+        modifyMember.setId(1L);
+        modifyMember.setEnabled(false);
+
+        when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+        when(memberRepository.save(any(Member.class))).thenReturn(member);
+
+        ResponseDTO<Member> response = service.updateMember(ID,modifyMember);
+        assertTrue(response.isSuccess());
+
+        verify(memberRepository,times(1)).findById(anyLong());
+        verify(memberRepository,times(1)).save(any(Member.class));
+
+    }
+
+    @Test
+    public void test_save_rol_authority() {
+        Rol rol =new Rol();
+        rol.setId(1L);
+
+        Authority authority = new Authority();
+        authority.setId(1L);
+        List<RolAuthority> rolAuthorities = Arrays.asList(new RolAuthority(1l,rol,authority));
+
+        when(rolAuthorityRepository.saveAllAndFlush(anyCollection())).thenReturn(rolAuthorities);
+        ResponseDTO<List<RolAuthority>> response = service.assignAuthority(rolAuthorities);
+
+        assertTrue(response.isSuccess());
+
+        verify(rolAuthorityRepository,times(1)).saveAllAndFlush(anyCollection());
+    }
+
+
 
 
 
