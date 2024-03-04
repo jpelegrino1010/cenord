@@ -130,12 +130,12 @@ public class MemberServiceTest {
         authority.setId(1L);
         List<RolAuthority> rolAuthorities = Arrays.asList(new RolAuthority(1l,rol,authority));
 
-        when(rolAuthorityRepository.saveAllAndFlush(anyCollection())).thenReturn(rolAuthorities);
+        when(rolAuthorityRepository.saveAll(anyCollection())).thenReturn(rolAuthorities);
         ResponseDTO<List<RolAuthority>> response = service.assignAuthority(rolAuthorities);
 
         assertTrue(response.isSuccess());
 
-        verify(rolAuthorityRepository,times(1)).saveAllAndFlush(anyCollection());
+        verify(rolAuthorityRepository,times(1)).saveAll(anyCollection());
     }
 
 

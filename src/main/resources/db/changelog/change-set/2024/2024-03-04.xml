@@ -7,11 +7,21 @@
    http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <include file="2024/2024-02-19.xml" relativeToChangelogFile="true"></include>
-    <include file="2024/2024-02-20.xml" relativeToChangelogFile="true"></include>
-    <include file="2024/2024-02-29.xml" relativeToChangelogFile="true"></include>
-    <include file="2024/2024-03-01.xml" relativeToChangelogFile="true"></include>
-    <include file="2024/2024-03-04.xml" relativeToChangelogFile="true"></include>
+    <changeSet author="julioluis" id="jl-2024-03-04-01">
+        <sql>
+
+            ALTER TABLE member
+                ADD COLUMN first_name VARCHAR (50)  AFTER id ;
+
+            ALTER TABLE member
+                ADD COLUMN last_name VARCHAR (50)  AFTER first_name ;
+
+            ALTER TABLE member
+                ADD COLUMN image_path VARCHAR (50)  AFTER last_name ;
+
+        </sql>
+
+    </changeSet>
 
 
 </databaseChangeLog>
