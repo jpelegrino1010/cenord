@@ -31,4 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-noahrd_react/node_modules
+node_modules
+node
+package-lock.json
