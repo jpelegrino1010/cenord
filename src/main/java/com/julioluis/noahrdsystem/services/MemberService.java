@@ -96,6 +96,12 @@ public class MemberService {
                         ?member1.getRol() : modifyMember.getRol());
                         member1.setPassword(Objects.isNull(modifyMember.getPassword())
                         ?member1.getPassword() : modifyMember.getPassword());
+                        member1.setFirstName(Objects.isNull(modifyMember.getFirstName())
+                        ?member1.getFirstName() : modifyMember.getFirstName());
+                        member1.setLastName(Objects.isNull(modifyMember.getLastName())
+                        ?member1.getLastName() : modifyMember.getLastName());
+                        member1.setImagePath(Objects.isNull(modifyMember.getImagePath())
+                        ?member1.getImagePath() : modifyMember.getImagePath());
                         response.setData(member1);
                         return memberRepository.save(member1);
                         }
