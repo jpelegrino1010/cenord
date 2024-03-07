@@ -1,14 +1,59 @@
-import { useEffect } from "react";
-import { connect } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { connect } from 'react-redux';
+import {
+  loadAllUsers,
+  loadUserById,
+  create,
+  update,
+} from './../../redux/actions/userAction';
 
 const Home = (props) => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    console.log("Cargo la pagina");
-    navigate("/home");
-  }, []);
-  return <>Welcome to my Home page.</>;
+  const loadById = () => {
+    props.onGetUserById(1);
+  };
+
+  const createUser = () => {
+    props.onCreateUser({
+      email: 'email1@noahrd.com',
+      password: 'pass123456',
+      rol: { id: 1 },
+    });
+  };
+
+  const updateUser = () => {
+    props.onUpdateUser(16, { firstName: 'Carlito' });
+  };
+  return (
+    <>
+      Welcome to my Home page.
+      <div>
+        <button onClick={props.onGetAllUsers}>Load Users</button>
+      </div>
+      <div>
+        <button onClick={loadById}>Load UserById</button>
+      </div>
+      <div>
+        <button onClick={createUser}>create User</button>
+      </div>
+      <div>
+        <button onClick={updateUser}>update User</button>
+      </div>
+    </>
+  );
 };
 
-export default connect()(Home);
+const mapPropsToState = (state) => {
+  return {
+    users: state.user.users,
+  };
+};
+
+const mapDispatchToState = (dispatch) => {
+  return {
+    onGetAllUsers: () => dispatch(loadAllUsers()),
+    onGetUserById: (userId) => dispatch(loadUserById(userId)),
+    onCreateUser: (newUser) => dispatch(create(newUser)),
+    onUpdateUser: (userId, user) => dispatch(update(userId, user)),
+  };
+};
+
+export default connect(mapPropsToState, mapDispatchToState)(Home);
