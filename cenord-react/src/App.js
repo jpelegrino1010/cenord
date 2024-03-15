@@ -1,4 +1,5 @@
-import './App.css';
+import './css/style.css';
+
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import Login from './components/login/Login';
@@ -9,7 +10,11 @@ const App = () => {
     { path: '/', element: <Login /> },
     { path: '/home', element: <Home /> },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 };
 
 export default App;

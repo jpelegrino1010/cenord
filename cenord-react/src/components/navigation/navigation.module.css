@@ -1,0 +1,27 @@
+.main-nav {
+  padding: 2rem;
+  height: 100%;
+  background-color: #ffe8cc;
+}
+
+.main-nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  flex-direction: column;
+}
+
+.main-nav-link:link,
+.main-nav-link:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: #868e96;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+  background-color: #fff4e6;
+  color: #ff922b;
+}

@@ -1,0 +1,53 @@
+/*
+--- 01 TYPOGRAPHY SYSTEM
+- Font sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+main color
+#ffe8cc - backgrouds
+
+##868e96  - text
+
+*/
+
+/* overwrite global settings */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  /* 10/16 = 0.625 */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #868e96;
+}
+
+/* LAYOUT */
+
+.layout {
+  width: 1366px;
+  height: 768px;
+
+  display: grid;
+  grid:
+    'sidebar content' 1fr
+    / auto 1fr;
+  gap: 8px;
+}
+
+.side-bar {
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: content;
+  padding: 2rem;
+  height: 24rem;
+}

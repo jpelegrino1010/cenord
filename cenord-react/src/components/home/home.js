@@ -5,6 +5,7 @@ import {
   create,
   update,
 } from './../../redux/actions/userAction';
+import Page from '../UI/page';
 
 const Home = (props) => {
   const loadById = () => {
@@ -23,7 +24,7 @@ const Home = (props) => {
     props.onUpdateUser(16, { firstName: 'Carlito' });
   };
   return (
-    <>
+    <Page pageClass="content">
       Welcome to my Home page.
       <div>
         <button onClick={props.onGetAllUsers}>Load Users</button>
@@ -37,7 +38,7 @@ const Home = (props) => {
       <div>
         <button onClick={updateUser}>update User</button>
       </div>
-    </>
+    </Page>
   );
 };
 

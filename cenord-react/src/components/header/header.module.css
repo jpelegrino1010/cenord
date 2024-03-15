@@ -1,0 +1,7 @@
+.header {
+  height: 9.6rem;
+  background-color: #ffe8cc;
+  padding: 2rem 4.8rem;
+  display: flex;
+  gap: 1rem;
+}
