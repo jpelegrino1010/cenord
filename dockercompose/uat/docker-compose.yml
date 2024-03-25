@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    image: mysql
+    environment:
+      MYSQL_USER: admin_uat
+      MYSQL_PASSWORD: admin54321
+      MYSQL_DATABASE: noahdb_uat
+      MYSQL_ROOT_PASSWORD: admin54321
+    ports:
+      - 3304:3306
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      springboot-mysql-net:
+
+networks:
+  springboot-mysql-net:

@@ -91,6 +91,41 @@
 
     </dependencies>
 
+    <profiles>
+<!--        DEV Profile  -->
+        <profile>
+            <id>dev</id>
+            <build>
+                <finalName>${project.artifactId}</finalName>
+                <filters>
+                    <filter>src/main/resources/application.properties</filter>
+                </filters>
+            </build>
+        </profile>
+
+<!--        UAT Profile -->
+        <profile>
+            <id>uat</id>
+            <build>
+                <finalName>${project.artifactId}-uat</finalName>
+                <filters>
+                    <filter>src/main/resources/application_uat.properties</filter>
+                </filters>
+            </build>
+        </profile>
+
+<!--        PROD profile -->
+        <profile>
+            <id>prod</id>
+            <build>
+                <finalName>${project.artifactId}-prod</finalName>
+                <filters>
+                    <filter>src/main/resources/application_prod.properties</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
