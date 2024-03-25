@@ -34,3 +34,4 @@ build/
 node_modules
 node
 package-lock.json
+/mysql-data/

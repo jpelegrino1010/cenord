@@ -1,5 +1,6 @@
 package com.julioluis.noahrdsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -25,4 +28,5 @@ public class Authority {
     private LocalDateTime createdAt;
     @Column(name = "created_by")
     private String createdBy;
+
 }

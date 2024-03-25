@@ -34,6 +34,6 @@ public class Member extends BaseEntity {
     private String password;
     private Boolean enabled;
     @JoinColumn(name = "rol_id")
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     private Rol rol;
 }

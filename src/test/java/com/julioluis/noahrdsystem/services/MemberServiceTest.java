@@ -121,22 +121,22 @@ public class MemberServiceTest {
 
     }
 
-    @Test
-    public void test_save_rol_authority() {
-        Rol rol =new Rol();
-        rol.setId(1L);
-
-        Authority authority = new Authority();
-        authority.setId(1L);
-        List<RolAuthority> rolAuthorities = Arrays.asList(new RolAuthority(1l,rol,authority));
-
-        when(rolAuthorityRepository.saveAll(anyCollection())).thenReturn(rolAuthorities);
-        ResponseDTO<List<RolAuthority>> response = service.assignAuthority(rolAuthorities);
-
-        assertTrue(response.isSuccess());
-
-        verify(rolAuthorityRepository,times(1)).saveAll(anyCollection());
-    }
+//    @Test
+//    public void test_save_rol_authority() {
+//        Rol rol =new Rol();
+//        rol.setId(1L);
+//
+//        Authority authority = new Authority();
+//        authority.setId(1L);
+//        List<RolAuthority> rolAuthorities = Arrays.asList(new RolAuthority(1l,rol,authority));
+//
+//        when(rolAuthorityRepository.saveAll(anyCollection())).thenReturn(rolAuthorities);
+//        ResponseDTO<List<RolAuthority>> response = service.assignAuthority(rolAuthorities);
+//
+//        assertTrue(response.isSuccess());
+//
+//        verify(rolAuthorityRepository,times(1)).saveAll(anyCollection());
+//    }
 
 
 

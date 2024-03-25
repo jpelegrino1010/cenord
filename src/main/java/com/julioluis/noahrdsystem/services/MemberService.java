@@ -1,10 +1,14 @@
 package com.julioluis.noahrdsystem.services;
 
 import com.julioluis.noahrdsystem.dtos.ResponseDTO;
+import com.julioluis.noahrdsystem.model.Authority;
 import com.julioluis.noahrdsystem.model.Member;
+import com.julioluis.noahrdsystem.model.Rol;
 import com.julioluis.noahrdsystem.model.RolAuthority;
+import com.julioluis.noahrdsystem.repositories.AuthorityRepository;
 import com.julioluis.noahrdsystem.repositories.MemberRepository;
 import com.julioluis.noahrdsystem.repositories.RolAuthorityRepository;
+import com.julioluis.noahrdsystem.repositories.RolRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +19,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
@@ -23,6 +26,10 @@ public class MemberService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private RolAuthorityRepository rolAuthorityRepository;
+    @Autowired
+    private RolRepository rolRepository;
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     public ResponseDTO<Member> findMemberByEmail(String email) {
         ResponseDTO<Member> response = new ResponseDTO<>();
@@ -120,12 +127,12 @@ public class MemberService {
 
     }
 
-    public ResponseDTO<List<RolAuthority>> assignAuthority(List<RolAuthority> rolAuthorities) {
-        ResponseDTO<List<RolAuthority>> response = new ResponseDTO<>();
+    public ResponseDTO<Member> assignAuthority(Member member) {
+        ResponseDTO<Member> response = new ResponseDTO<>();
 
         try {
-            List<RolAuthority> authorities = rolAuthorityRepository.saveAll(rolAuthorities);
-            response.setData(authorities);
+           Member memberUpdated = memberRepository.save(member);
+            response.setData(memberUpdated);
             response.setSuccess(true);
             return response;
         }catch (Exception ex) {
@@ -135,4 +142,13 @@ public class MemberService {
 
 
     }
+
+    public Rol findRolById(Long id) {
+        return rolRepository.findById(id).orElse(null);
+    }
+
+    public Authority findAuthorityById(Long id) {
+        return authorityRepository.findById(id).orElse(null);
+    }
+
 }

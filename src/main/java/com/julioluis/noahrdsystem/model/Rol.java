@@ -9,6 +9,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -36,6 +37,6 @@ public class Rol {
                     referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"
                     ,referencedColumnName = "id"))
-    private Set<Authority> authorities;
+    private Set<Authority> authorities = new HashSet<>();
 
 }
